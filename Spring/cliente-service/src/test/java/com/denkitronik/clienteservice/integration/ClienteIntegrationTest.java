@@ -125,8 +125,8 @@ class ClienteIntegrationTest {
 
     @Test
     @Order(5)
-    @DisplayName("PUT /clientes/{id} → 200 actualiza los datos")
-    void actualizarCliente_debeRetornar200() {
+    @DisplayName("PUT /clientes/{id} → 201 actualiza los datos")
+    void actualizarCliente_debeRetornar201() {
         Region region = new Region();
         region.setId(regionId);
 
@@ -143,7 +143,7 @@ class ClienteIntegrationTest {
                 entity,
                 Cliente.class);
 
-        assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(respuesta.getBody()).isNotNull();
         assertThat(respuesta.getBody().getApellido()).isEqualTo("Hamilton-Updated");
     }

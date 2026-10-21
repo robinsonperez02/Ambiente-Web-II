@@ -146,14 +146,14 @@ class ClienteRestControllerTest {
     }
 
     @Test
-    @DisplayName("PUT /clientes/1 válido → 200 OK")
-    void actualizarCliente_valido_debeRetornar200() throws Exception {
+    @DisplayName("PUT /clientes/1 válido → 201 Created")
+    void actualizarCliente_valido_debeRetornar201() throws Exception {
         when(clienteService.update(eq(1L), any(Cliente.class))).thenReturn(cliente);
 
         mockMvc.perform(put(BASE + "/clientes/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(cliente)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
